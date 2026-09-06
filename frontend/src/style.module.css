@@ -322,3 +322,17 @@
   color: #7a7161;
   margin-bottom: 10px;
 }
+
+.mensagemStatus {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 13px;
+  color: #7c8c5a;
+  margin-top: 10px;
+}
+
+.mensagemErro {
+  font-family: 'Work Sans', sans-serif;
+  font-size: 13px;
+  color: #d8483c;
+  margin-top: 10px;
+}

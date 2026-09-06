@@ -1,3 +1,4 @@
+import { useState } from "react";
 import axios from "axios";
 import styles from '../style.module.css'
 
@@ -11,6 +12,10 @@ export function FormularioPrato({
     ingredientes,
     aoEnviarPedido
 }) {
+
+    const [enviando, setEnviando] = useState(false);
+    const [sucesso, setSucesso] = useState(false);
+    const [erro, setErro] = useState(false);
 
     const carboidratos = [];
     const proteinas = [];
@@ -38,6 +43,10 @@ export function FormularioPrato({
     }
 
     function enviarPedido() {
+        setEnviando(true);
+        setSucesso(false);
+        setErro(false);
+
         const total =
             precoDoIngrediente(carboidratoId) +
             precoDoIngrediente(proteinaId) +
@@ -64,6 +73,12 @@ export function FormularioPrato({
                 setVegetalId("");
                 setGorduraId("");
                 setTemperoId("");
+                setEnviando(false);
+                setSucesso(true);
+            })
+            .catch(() => {
+                setEnviando(false);
+                setErro(true);
             });
     }
 
@@ -123,7 +138,12 @@ export function FormularioPrato({
                 </select>
             </div>
 
-            <button className={styles.formularioBotao} onClick={enviarPedido}>Enviar para a cozinha</button>
+            <button className={styles.formularioBotao} onClick={enviarPedido} disabled={enviando}>
+                {enviando ? "Enviando..." : "Enviar para a cozinha"}
+            </button>
+
+            {sucesso && <p className={styles.mensagemStatus}>Pedido enviado com sucesso!</p>}
+            {erro && <p className={styles.mensagemErro}>Não foi possível enviar o pedido. Tente novamente.</p>}
         </section>
     );
 }
