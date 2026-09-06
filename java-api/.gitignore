@@ -31,3 +31,25 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Java / Maven
+target/
+*.class
+*.jar
+
+# Node / React
+node_modules/
+dist/
+build/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Variáveis de ambiente
+.env
